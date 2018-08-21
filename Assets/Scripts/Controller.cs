@@ -40,6 +40,7 @@ public class Controller : MonoBehaviour
             //}
             if (currentBlend >= minBlending && currentBlend <= maxBlending)
             {
+                
                 currentBlend += .2f;
                 playerAnim.SetFloat("WalkToRun", currentBlend);
             }
