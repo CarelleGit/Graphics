@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Ground
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 0d8d6722d7845b74fab84483d26d03e7, type: 3}
   m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -40,11 +40,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: d2fc92d8bfcbb5a448a2ddfaff9addc3, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalText:
+        m_Texture: {fileID: 2800000, guid: 0445f343b8070134c8c674c74b0d2ae2, type: 3}
+        m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -60,9 +64,10 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 1
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _LightPower: 1
+    - _Metallic: 0.212
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
