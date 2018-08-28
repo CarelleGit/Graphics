@@ -19,6 +19,7 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float x = Input.GetAxis("Horizontal") * Time.deltaTime * currentSpeed;
         float z = Input.GetAxis("Vertical") * Time.deltaTime * currentSpeed;
 
@@ -26,17 +27,18 @@ public class Controller : MonoBehaviour
         transform.Translate(0, 0, z);
 
         playerAnim.SetFloat("WalkToRun", currentSpeed);
-        if (currentSpeed <= minSpeed)
-        {
-            currentSpeed = minSpeed;
-        }
-        if (currentSpeed >= maxSpeed)
-        {
-            currentSpeed = maxSpeed;
-        }
+        
 
         if (Input.GetKey(KeyCode.W))
         {
+            if (currentSpeed <= minSpeed)
+            {
+                currentSpeed = minSpeed;
+            }
+            if (currentSpeed >= maxSpeed)
+            {
+                currentSpeed = maxSpeed;
+            }
             if (currentSpeed >= 2 && !Input.GetKey(KeyCode.LeftShift))
             {
                 //currentSpeed = maxSpeed / 2;
@@ -48,6 +50,16 @@ public class Controller : MonoBehaviour
             }
 
         }
+        if(Input.GetKey(KeyCode.S))
+        { 
+            playerAnim.SetTrigger("WalkingBack");
+           
+        }
+        else
+        {
+            playerAnim.SetTrigger("Walking");
+
+        }
         if (Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeed += Time.deltaTime * 10;
@@ -56,5 +68,6 @@ public class Controller : MonoBehaviour
         {
             currentSpeed -= Time.deltaTime * 5;
         }
+       
     }
 }
