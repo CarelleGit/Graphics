@@ -8,6 +8,7 @@ public class ButtonsControls : MonoBehaviour
     private RectTransform controlPanel;
     [SerializeField]
     private bool placeholder;
+    
 
     public void OpenPanel()
     {
@@ -24,6 +25,7 @@ public class ButtonsControls : MonoBehaviour
     {
         
         placeholder = false;
+       
     }
 
     // Update is called once per frame
@@ -31,11 +33,12 @@ public class ButtonsControls : MonoBehaviour
     {
         if(placeholder == false)
         {
-            controlPanel.position = Vector3.Lerp(controlPanel.position, new Vector3(0, controlPanel.position.y), Time.deltaTime * 10);
+            controlPanel.position = Vector3.Lerp(controlPanel.position, new Vector3(0, controlPanel.position.y), Time.deltaTime * 5);
         }
         else
         {
-            controlPanel.position = Vector3.Lerp(controlPanel.position, new Vector3(Screen.width, controlPanel.position.y), Time.deltaTime * 10);
+            controlPanel.position = Vector3.Lerp(controlPanel.position, new Vector3(Screen.width, controlPanel.position.y), Time.deltaTime * 5);
         }
+
     }
 }
