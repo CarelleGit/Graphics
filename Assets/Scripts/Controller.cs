@@ -87,8 +87,17 @@ public class Controller : MonoBehaviour
 
             }
 
+
         }
 
+        if(Input.GetKey(KeyCode.A))
+        {
+            playerAnim.SetTrigger("WalkLeft");
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            playerAnim.SetTrigger("WalkRight");
+        }
 
         //backwards walking controller
         if (Input.GetKey(KeyCode.S))
@@ -127,7 +136,7 @@ public class Controller : MonoBehaviour
 
         }
 
-        //
+        
         currentSpeed -= Time.deltaTime * 5;
 
 
