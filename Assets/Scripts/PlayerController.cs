@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float magVelocity;
-    [Range(1,2)]
+    //[Range(1,2)]
     public float timer;
+    public float blendSpeed;
     public CharacterController characterController;
+    public Animator playerAnim;
     // Use this for initialization
     void Start()
     {
@@ -18,98 +20,73 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer = Mathf.Clamp(timer, 1f, 2f);
 
-
-
+        playerAnim.SetFloat("Speed", blendSpeed);
         if (Input.GetKey(KeyCode.W))
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                timer += Time.deltaTime;
-                if (timer >= 2)
-                {
-                    timer = 2;
-                }
-                characterController.Move(transform.forward * (speed * timer) * Time.deltaTime);
-            }
-            else
-            {
-                characterController.Move(transform.forward * speed * Time.deltaTime);
-                timer -= Time.deltaTime;
-                if (timer <= 1)
-                {
-                    timer = 1;
-                }
-            }
+            blendSpeed = Mathf.Clamp(blendSpeed, 0, .2f);
+            blendSpeed += .01f;
+            playerAnim.SetFloat("Speed", blendSpeed);
+
+            characterController.Move(transform.forward * speed * Time.deltaTime);
+            timer -= Time.deltaTime;
+
+        }
+       
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            blendSpeed = Mathf.Clamp(blendSpeed, 0, 1);
+            blendSpeed += .01f;
+            playerAnim.SetFloat("Speed", blendSpeed);
+            timer += Time.deltaTime;
+            characterController.Move(transform.forward * (speed * timer) * Time.deltaTime);
+        }
+        else
+        {
+            blendSpeed = Mathf.Clamp(blendSpeed, 0, .2f);
+            blendSpeed -= .01f;
         }
 
 
         if (Input.GetKey(KeyCode.S))
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                timer += Time.deltaTime;
-                if (timer >= 2)
-                {
-                    timer = 2;
-                }
-                characterController.Move(transform.forward * (-speed * timer) * Time.deltaTime);
-            }
-            else
-            {
-                characterController.Move(transform.forward * -speed * Time.deltaTime);
-                timer -= Time.deltaTime;
-                if (timer <= 1)
-                {
-                    timer = 1;
-                }
-            }
+            playerAnim.SetFloat("Speed", -.2f);
+
+            characterController.Move(transform.forward * -speed * Time.deltaTime);
+            timer -= Time.deltaTime;
+            //if (timer <= 1)
+            //{
+            //    timer = 1;
+            //}
+
         }
 
 
         if (Input.GetKey(KeyCode.A))
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                timer += Time.deltaTime;
-                if (timer >= 2)
-                {
-                    timer = 2;
-                }
-                characterController.Move(transform.right * (-speed * timer) * Time.deltaTime);
-            }
-            else
-            {
-                characterController.Move(transform.right * -speed * Time.deltaTime);
-                timer -= Time.deltaTime;
-                if (timer <= 1)
-                {
-                    timer = 1;
-                }
-            }
+
+            characterController.Move(transform.right * -speed * Time.deltaTime);
+            timer -= Time.deltaTime;
+            //if (timer <= 1)
+            //{
+            //    timer = 1;
+            //}
+
         }
 
 
         if (Input.GetKey(KeyCode.D))
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                timer += Time.deltaTime;
-                if (timer >= 2)
-                {
-                    timer = 2;
-                }
-                characterController.Move(transform.right * (speed * timer) * Time.deltaTime);
-            }
-            else
-            {
-                characterController.Move(transform.right * speed * Time.deltaTime);
-                timer -= Time.deltaTime;
-                if (timer <= 1)
-                {
-                    timer = 1;
-                }
-            }
+
+
+            characterController.Move(transform.right * speed * Time.deltaTime);
+            timer -= Time.deltaTime;
+            //if (timer <= 1)
+            //{
+            //    timer = 1;
+
         }
         magVelocity = speed * timer;
     }
