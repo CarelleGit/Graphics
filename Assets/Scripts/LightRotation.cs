@@ -6,6 +6,7 @@ public class LightRotation : MonoBehaviour
 {
     Quaternion night;
     Quaternion day;
+    public ParticleSystem rotatingParticles;
     // Use this for initialization
     void Start()
     {
@@ -19,10 +20,12 @@ public class LightRotation : MonoBehaviour
         if(Input.GetKey(KeyCode.Mouse0))//Left Click == Night
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, night, Time.deltaTime * 100);
+            rotatingParticles.Play();
         }
         else if(Input.GetKey(KeyCode.Mouse1))//Right Click == Day
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, day, Time.deltaTime * 100);
+            rotatingParticles.Stop();
         }
     }
 }
