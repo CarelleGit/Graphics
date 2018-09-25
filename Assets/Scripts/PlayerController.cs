@@ -11,10 +11,11 @@ public class PlayerController : MonoBehaviour
     public float blendSpeed;
     public CharacterController characterController;
     public Animator playerAnim;
+    private bool unlockedCursor = false;
     // Use this for initialization
     void Start()
     {
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -25,6 +26,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
+        }
+    
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            switch (Cursor.lockState)
+            {
+                case CursorLockMode.Locked:
+                    Cursor.lockState = CursorLockMode.None;
+                    break;
+                case CursorLockMode.None:
+                    Cursor.lockState = CursorLockMode.Locked;
+                    break;
+            }
         }
 
         playerAnim.SetFloat("Speed", blendSpeed);
@@ -37,7 +51,6 @@ public class PlayerController : MonoBehaviour
             {
                 blendSpeed = Mathf.Clamp(blendSpeed, .2f, 1f);
                 blendSpeed += .01f;
-                // playerAnim.SetFloat("Speed", blendSpeed);
                 timer += Time.deltaTime;
                 characterController.Move(transform.forward * (speed * timer) * Time.deltaTime);
             }
@@ -45,10 +58,8 @@ public class PlayerController : MonoBehaviour
             {
                 blendSpeed = Mathf.Clamp(blendSpeed, 0, .2f);
                 blendSpeed += .01f;
-                //playerAnim.SetFloat("Speed", blendSpeed);
             }
         }
-       
 
         if (Input.GetKey(KeyCode.S))
         {
