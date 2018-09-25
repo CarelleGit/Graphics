@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -34,9 +35,11 @@ public class PlayerController : MonoBehaviour
             {
                 case CursorLockMode.Locked:
                     Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     break;
                 case CursorLockMode.None:
                     Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
                     break;
             }
         }

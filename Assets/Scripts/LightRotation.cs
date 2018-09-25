@@ -6,6 +6,7 @@ public class LightRotation : MonoBehaviour
 {
     Quaternion night;
     Quaternion day;
+
     public ParticleSystem rotatingParticles;
     // Use this for initialization
     void Start()
